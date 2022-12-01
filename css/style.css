@@ -27,24 +27,8 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FF001E;
+  background: #FFFFFF;
   border-radius: 10px;
-}
-
-h1::selection {
-  background: #FF001E;
-}
-
-p::selection {
-  background: #FF001E;
-}
-
-br::selection {
-  background: #FF001E;
-}
-
-span::selection {
-  background: #FF001E;
 }
 
 #header {
@@ -85,6 +69,10 @@ span::selection {
   color: #FF001E;
   padding: 15px 10px;
   transition: 0.5s ease-in-out;
+}
+#header .header--nav {
+  display: flex;
+  align-items: center;
 }
 #header .header--nav a {
   font-weight: 400;
@@ -252,6 +240,7 @@ span::selection {
 }
 #cards h1 {
   padding-top: 40px;
+  padding-left: 15px;
   font-weight: 700;
   font-size: 28px;
   letter-spacing: 0.003em;
@@ -259,43 +248,54 @@ span::selection {
 }
 #cards .cards {
   display: flex;
-  align-content: center;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: space-around;
   flex-wrap: wrap;
+  padding-top: 40px;
 }
-#cards .cards img {
-  margin: 20px 0;
-}
-#cards .cards .card {
+#cards .cards--block {
+  z-index: 1;
   position: relative;
+  width: 424px;
+  height: 283px;
+  margin-bottom: 30px;
 }
-#cards .cards .card .card-title {
+#cards .cards--block img {
+  transition: 0.5s ease-in-out;
+  width: 100%;
+}
+#cards .cards--block img:hover {
+  opacity: 0.4;
+}
+#cards .cards--block p {
   position: absolute;
-  bottom: 50px;
-  left: 100px;
-}
-#cards .cards .card .card-title p {
-  padding-bottom: 20px;
+  bottom: 40px;
+  left: 110px;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   text-align: center;
   letter-spacing: 0.003em;
-  color: rgba(255, 255, 255, 0.73);
+  color: #FFFFFF;
+  z-index: -1;
 }
-#cards .cards .card .card-figure {
+#cards .cards--block__icon {
   position: absolute;
-  bottom: -11px;
-  right: -118px;
-  width: 50px;
-  height: 50px;
+  bottom: 10px;
+  right: 10px;
+  z-index: -1;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 0.5px solid #FF001E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-#cards .cards .card .card-figure p {
-  padding-top: 8px;
-  color: red;
-  font-size: 28px;
+#cards .cards--block__icon a {
+  padding-top: 5px;
+  font-size: 30px;
+  color: #FF001E;
 }
 
 #our {
@@ -888,103 +888,123 @@ span::selection {
 #tabs .tabs {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  padding-bottom: 40px;
 }
-#tabs .tabs--labels label {
-  padding-left: 25px;
+#tabs .tabs--labels {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
 }
-#tabs .tabs--labels__figur1 {
-  margin-bottom: 20px;
-  width: 15px;
-  height: 15px;
-  background: #714634;
+#tabs .tabs--inputs {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 920px;
 }
-#tabs .tabs--labels__figur2 {
-  margin-bottom: 20px;
-  width: 15px;
-  height: 15px;
-  background: #AF2A2A;
+#tabs .tabs--inputs #all:checked ~ .tabs--inputs__block,
+#tabs .tabs--inputs #all:checked ~ .tabs--inputs__block1,
+#tabs .tabs--inputs #all:checked ~ .tabs--inputs__block2,
+#tabs .tabs--inputs #all:checked ~ .tabs--inputs__block3 {
+  opacity: 1;
+  transition: 1s;
 }
-#tabs .tabs--labels__figur3 {
-  margin-bottom: 20px;
-  width: 15px;
-  height: 15px;
-  background: #24918A;
+#tabs .tabs--inputs #frontend:checked ~ .tabs--inputs__block1,
+#tabs .tabs--inputs #frontend:checked ~ .tabs--inputs__block2,
+#tabs .tabs--inputs #frontend:checked ~ .tabs--inputs__block3 {
+  opacity: 0.1;
+  transition: 1s;
 }
-#tabs .tabs--labels__figur4 {
-  width: 15px;
-  height: 15px;
-  background: #4D2B6F;
+#tabs .tabs--inputs #backend:checked ~ .tabs--inputs__block,
+#tabs .tabs--inputs #backend:checked ~ .tabs--inputs__block1,
+#tabs .tabs--inputs #backend:checked ~ .tabs--inputs__block3,
+#tabs .tabs--inputs #backend:checked ~ .tabs--inputs__block4 {
+  opacity: 0.1;
+  transition: 1s;
+}
+#tabs .tabs--inputs #uiux:checked ~ .tabs--inputs__block,
+#tabs .tabs--inputs #uiux:checked ~ .tabs--inputs__block2,
+#tabs .tabs--inputs #uiux:checked ~ .tabs--inputs__block3,
+#tabs .tabs--inputs #uiux:checked ~ .tabs--inputs__block4 {
+  opacity: 0.1;
+  transition: 1s;
+}
+#tabs .tabs--inputs #database:checked ~ .tabs--inputs__block,
+#tabs .tabs--inputs #database:checked ~ .tabs--inputs__block2,
+#tabs .tabs--inputs #database:checked ~ .tabs--inputs__block1 {
+  opacity: 0.1;
+  transition: 1s;
 }
 #tabs .tabs--inputs input {
   display: none;
 }
-#tabs .tabs--inputs__card1 {
-  display: flex;
-  margin: 30px 0;
-}
-#frontend:checked ~ #tabs .tabs--inputs__card1--block1, #frontend:checked ~ #tabs .tabs--inputs__card1--block2, #frontend:checked ~ #tabs .tabs--inputs__card1--block3 {
-  opacity: 0.2;
-  transition: 1s;
-}
-#tabs .tabs--inputs__card1--block {
-  margin: 0 15px;
-  width: 100px;
-  height: 90px;
+#tabs .tabs--inputs__block {
+  margin: 10px;
+  width: 80px;
+  height: 70px;
   background: #714634;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-#tabs .tabs--inputs__card1--block h1 {
+#tabs .tabs--inputs__block h2 {
+  padding-top: 15px;
   font-weight: 400;
   font-size: 12px;
+  text-align: center;
   color: #F5F7F9;
 }
-#tabs .tabs--inputs__card1--block1 {
-  margin: 0 15px;
-  width: 100px;
-  height: 90px;
+#tabs .tabs--inputs__block1 {
+  margin: 10px;
+  width: 80px;
+  height: 70px;
   background: #24918A;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-#tabs .tabs--inputs__card1--block1 h1 {
+#tabs .tabs--inputs__block1 h2 {
+  padding-top: 15px;
   font-weight: 400;
   font-size: 12px;
+  text-align: center;
   color: #F5F7F9;
 }
-#tabs .tabs--inputs__card1--block2 {
-  margin: 0 15px;
-  width: 100px;
-  height: 90px;
+#tabs .tabs--inputs__block2 {
+  margin: 10px;
+  width: 80px;
+  height: 70px;
   background: #AF2A2A;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-#tabs .tabs--inputs__card1--block2 h1 {
+#tabs .tabs--inputs__block2 h2 {
+  padding-top: 15px;
   font-weight: 400;
   font-size: 12px;
+  text-align: center;
   color: #F5F7F9;
 }
-#tabs .tabs--inputs__card1--block3 {
-  margin: 0 15px;
-  width: 100px;
-  height: 90px;
+#tabs .tabs--inputs__block3 {
+  margin: 10px;
+  width: 80px;
+  height: 70px;
   background: #4D2B6F;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-#tabs .tabs--inputs__card1--block3 h1 {
+#tabs .tabs--inputs__block3 h2 {
+  padding-top: 15px;
   font-weight: 400;
   font-size: 12px;
+  text-align: center;
   color: #F5F7F9;
 }
 
@@ -996,6 +1016,10 @@ span::selection {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 20px;
+}
+#group .group .swiper {
+  width: 100%;
+  height: 100%;
 }
 #group .group--h1 {
   padding-top: 40px;
@@ -1009,6 +1033,24 @@ span::selection {
   width: 200px;
   height: 330px;
   background: #F5F7F9;
+}
+#group .group--block .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
 }
 #group .group--block h1 {
   padding-top: 10px;
@@ -3029,30 +3071,6 @@ span::selection {
   letter-spacing: 0.003em;
   text-decoration-line: underline;
   color: #FFFFFF;
-}
-
-.swiper {
-  width: 85%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
 }
 
 /*# sourceMappingURL=style.css.map */
